@@ -1,0 +1,107 @@
+dn: cn=admin,dc=rc,dc=int,dc=colorado,dc=edu
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+cn: admin
+userPassword: password
+description: LDAP administrator
+
+dn: cn=schema
+changetype: modify
+add: attributetypes
+attributetypes: ( 1.3.6.1.4.1.6852.2.1.2.1 NAME 'curcAffiliation' SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+attributetypes: ( 1.3.6.1.4.1.6852.2.1.2.2 NAME 'curcRole' SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+attributetypes: ( 1.3.6.1.4.1.6852.2.1.2.3 NAME 'curcSponsor' SYNTAX 1.3.6.1.4.1.1466.115.121.1.26{256} EQUALITY caseIgnoreIA5Match SUBSTR caseIgnoreIA5SubstringsMatch )
+
+dn: cn=schema
+changetype: modify
+add: objectclasses
+objectclasses: ( 1.3.6.1.4.1.6852.2.1.1.1 NAME 'curcPerson' SUP inetorgperson MAY ( curcAffiliation $ curcRole $ curcSponsor ) )
+
+dn: ou=NCAR,ou=People,dc=rc,dc=int,dc=colorado,dc=edu
+objectClass: top
+objectClass: organizationalunit
+ou: NCAR
+
+dn: ou=SUDOers,dc=rc,dc=int,dc=colorado,dc=edu
+objectClass: top
+objectClass: organizationalunit
+ou: SUDOers
+
+dn: ou=automount,dc=rc,dc=int,dc=colorado,dc=edu
+objectClass: top
+objectClass: organizationalunit
+ou: automount
+
+dn: ou=XSEDEPeople,dc=rc,dc=int,dc=colorado,dc=edu
+objectClass: top
+objectClass: organizationalunit
+ou: XSEDEPeople
+
+dn: ou=UCB,ou=People,dc=rc,dc=int,dc=colorado,dc=edu
+objectClass: top
+objectClass: organizationalunit
+ou: UCB
+
+dn: ou=CSU,ou=People,dc=rc,dc=int,dc=colorado,dc=edu
+objectClass: top
+objectClass: organizationalunit
+ou: CSU
+
+dn: ou=XSEDE,ou=People,dc=rc,dc=int,dc=colorado,dc=edu
+objectClass: top
+objectClass: organizationalunit
+ou: XSEDE
+
+dn: ou=internal,ou=People,dc=rc,dc=int,dc=colorado,dc=edu
+objectClass: top
+objectClass: organizationalunit
+ou: internal
+
+dn: ou=auto.curc,ou=automount,dc=rc,dc=int,dc=colorado,dc=edu
+objectClass: top
+objectClass: automountmap
+objectClass: organizationalunit
+ou: auto.curc
+
+dn: ou=auto.archive,ou=automount,dc=rc,dc=int,dc=colorado,dc=edu
+objectClass: top
+objectClass: organizationalunit
+objectClass: automountmap
+ou: auto.archive
+
+dn: ou=auto.work,ou=automount,dc=rc,dc=int,dc=colorado,dc=edu
+objectClass: top
+objectClass: automountmap
+objectClass: organizationalunit
+ou: auto.work
+
+dn: ou=auto.root,ou=automount,dc=rc,dc=int,dc=colorado,dc=edu
+objectClass: automountmap
+objectClass: organizationalunit
+objectClass: top
+ou: auto.root
+
+dn: ou=NCAR,ou=Groups,dc=rc,dc=int,dc=colorado,dc=edu
+objectClass: top
+objectClass: organizationalunit
+ou: NCAR
+
+dn: ou=UCB,ou=Groups,dc=rc,dc=int,dc=colorado,dc=edu
+objectClass: top
+objectClass: organizationalunit
+ou: UCB
+
+dn: ou=CSU,ou=Groups,dc=rc,dc=int,dc=colorado,dc=edu
+objectClass: top
+objectClass: organizationalunit
+ou: CSU
+
+dn: ou=XSEDE,ou=Groups,dc=rc,dc=int,dc=colorado,dc=edu
+objectClass: top
+objectClass: organizationalunit
+ou: XSEDE
+
+dn: ou=internal,ou=Groups,dc=rc,dc=int,dc=colorado,dc=edu
+objectClass: top
+objectClass: organizationalunit
+ou: internal
