@@ -1,13 +1,15 @@
 FROM centos:7
-MAINTAINER "Zebula Sampedro" <sampedro@colorado.edu>
+MAINTAINER "Aaron Holt" <aaron.holt@colorado.edu>
+
+ARG DOMAIN
 
 RUN yum install -y epel-release \
     && yum update -y \
     && yum install -y 389-ds-base 389-adminutil \
     && yum clean all
 
-ADD ds-setup.inf /tmp/ds-setup.inf
-ADD ldapconf.ldif /tmp/ldapconf.ldif
+ADD $DOMAIN/ds-setup.inf /tmp/ds-setup.inf
+ADD $DOMAIN/ldapconf.ldif /tmp/ldapconf.ldif
 
 # The 389-ds setup will fail because the hostname can't be reliably determined, so we'll bypass it and then install.
 # Sleep command should be lengthened if you're getting ldap_sasl_bind(SIMPLE): Can't contact LDAP server (-1), ldap
@@ -20,7 +22,7 @@ RUN useradd ldapadmin \
    && setup-ds.pl --silent --file /tmp/ds-setup.inf \
    && /usr/sbin/ns-slapd -D /etc/dirsrv/slapd-dir \
    && sleep 5 \
-   && ldapadd -H ldap:/// -f /tmp/ldapconf.ldif -x -D "cn=Directory Manager" -w password
+   && ldapadd -H ldap:/// -f /tmp/ldapconf.ldif -x -D "cn=Directory Manager" -w ${DOMAIN}_password
 
 EXPOSE 389
 

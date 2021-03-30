@@ -1,10 +1,10 @@
 # RC LDAP Test Service
-This Dockerfile provides a test 389 service, configured to match the production RC LDAP. It is initialized with no user data.
+This Dockerfile provides a test 389 service, configured to match the production RC LDAP. It is initialized with no user data. Possible DOMAINS: curc, cu, csu.
 
 ## Usage Instructions
-To build this container, run:
+To build this container for curc ldap, run:
 ```
-docker build --tag="dev/rcldap" .
+docker build --tag="dev/rcldap" --build-arg DOMAIN=csu .
 ```
 After the container has been built, it can be run with the following command:
 ```
