@@ -8,8 +8,7 @@ RUN yum install -y epel-release \
     && yum install -y 389-ds-base 389-adminutil \
     && yum clean all
 
-ADD $DOMAIN/ds-setup.inf /tmp/ds-setup.inf
-ADD $DOMAIN/ldapconf.ldif /tmp/ldapconf.ldif
+COPY ${DOMAIN}/* /tmp/
 
 # The 389-ds setup will fail because the hostname can't be reliably determined, so we'll bypass it and then install.
 # Sleep command should be lengthened if you're getting ldap_sasl_bind(SIMPLE): Can't contact LDAP server (-1), ldap
@@ -26,4 +25,4 @@ RUN useradd ldapadmin \
 
 EXPOSE 389
 
-CMD /usr/sbin/ns-slapd -D /etc/dirsrv/slapd-dir && tail -F /var/log/dirsrv/slapd-dir/access
+CMD ["/bin/sh", "-c", "/usr/sbin/ns-slapd -D /etc/dirsrv/slapd-dir && tail -F /var/log/dirsrv/slapd-dir/access"]
