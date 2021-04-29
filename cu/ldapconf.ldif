@@ -2,7 +2,7 @@ dn: cn=admin,dc=rc,dc=int,dc=colorado,dc=edu
 objectClass: simpleSecurityObject
 objectClass: organizationalRole
 cn: admin
-userPassword: password
+userPassword: cu_password
 description: LDAP administrator
 
 dn: cn=schema

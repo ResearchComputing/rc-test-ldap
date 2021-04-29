@@ -20,7 +20,7 @@ AddOrgEntries = Yes
 AddSampleEntries = No
 InstallLdifFile = suggest
 RootDN = cn=Directory Manager
-RootDNPwd = password
+RootDNPwd = cu_password
 ServerIdentifier = dir
 ServerPort = 389
 SlapdConfigForMC = yes
